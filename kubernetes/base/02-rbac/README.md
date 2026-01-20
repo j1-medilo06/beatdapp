@@ -71,4 +71,6 @@ This repository contains Role, RoleBinding, and ServiceAccount YAML configuratio
 1. Apply roles and role bindings:
 
 ```bash
-kubectl apply -f _role_d
+kubectl apply -f _role_dev.yaml
+kubectl apply -f _rolebinding-dev.yaml
+kubectl apply -f _serviceaccount-dev.yaml
