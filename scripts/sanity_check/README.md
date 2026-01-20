@@ -29,10 +29,10 @@
 ./p95_latency_check.py_v1 [path_to_log_file]                    # static p95 values inside the code.
 ./p95_latency_check.py_v2 [path_to_log_file] [p95_target_ms].   # Uses dynamic p95 value inside the code.
 
-
+```
 
 ## OUTPUTS
-```
+```pgsql
 === Load Test Latency Sanity Report ===
 Total requests found: 21
 P95 latency: 200 ms
