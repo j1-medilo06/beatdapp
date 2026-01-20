@@ -1,14 +1,33 @@
 # beatdapp
 Beatdapp Take-Home Assignment – Platform Engineering Golden Path
 
-
+---
 ### Techniques & Design Principles
 
-1. Strong Decoupling: Keeps files small for easier updates, reviews, and rollbacks. Improves clarity, maintainability, and CI/GitOps safety. Scales cleanly across environments and cloud providers
+1. Strong Decoupling
+   - Keep files small and focused → easier updates, reviews, and rollbacks.
+   - Enhances clarity, maintainability, and CI/GitOps safety.
+   - Scales effortlessly across environments and cloud providers.
 
+2. Clear Folder & File Structure
+
+   - Common folders: Reusable templates, scripts, and configs across services, clouds, and regions.
+   - Service-specific folders: Isolated configs and manifests per service for modularity.
+   - Cloud/region-specific folders (optional): Handles provider- or region-specific differences.
+    - Ensures consistency, reusability, and easy multi-cloud deployment.
+
+3. CI/CD Pipeline Optimized for Short-Lived Credentials
+
+   - Break pipelines into small, modular steps to avoid session timeouts (e.g., IAM role 3600s).
+   - Dynamically fetch short-lived credentials during execution.
+   - Run only necessary jobs for small changes to save time and resources.
+   - Enables robust, reliable, and scalable deployments.
+
+---
 ### Limitations & Considerations
 1. CI/CD Timeouts: When running workflows on GitHub Actions (GHA), be mindful of session and job timeouts, especially for long-running Kubernetes operations.
 2. EKS Version Constraints: Certain EKS versions may require workarounds, such as combining Bash commands, due to version-specific limitations in tooling or API behavior.
+
 
 
 
