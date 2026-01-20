@@ -20,23 +20,23 @@ This policy applies to all developers, reviewers, and CI/CD pipelines responsibl
 
     Policy Statements
     1. Code Deployment
-        - Developers do not have direct access to production deployments.
+        - Developers do not have direct access to production deployments. (Should be managed in IAM Role in AWS)
+            - Manual deployment commands such as kubectl apply -f * are prohibited in STAGE and PRODUCTION.
+            - Deployment to production occurs only after pipeline enforcement and approval.
         - All code changes must be deployed through the CI/CD pipeline (e.g., GitHub Actions).
-        - Manual deployment commands such as kubectl apply -f * are prohibited in STAGE and PRODUCTION.
-        - Deployment to production occurs only after pipeline enforcement and approval.
-
+        
     2. Code Review
         - Every change must be reviewed and approved by at least two reviewers.
-        - Pull requests should be small and focused to facilitate thorough review.
+        - Pull requests should be small and focused. This ensures that managers or approvers can quickly understand the change without needing deep technical knowledge, making it easier to review and approve policy implementations efficiently.
         - Changes to production-specific files from the development branch are automatically rejected by reviewers. (Separation of PR between environment is REQUIRED)
 
     3. Branching Strategy
-        - Branching may be environment-specific or managed in a single branch.
+        - Branching may be environment-specific, featured-specific or managed in a single branch. (Culture)
         - The chosen strategy must be documented, agreed upon, and consistently applied by the team. (Culture)
 
     4. Environment-Specific Restrictions
-        - Developers working in the development environment may modify only dev-specific files.
-        - Production access are restricted and require review and pipeline approval before deployment.
+        - Developers working in the development environment may modify only dev-specific files. (Culture)
+        - Production access are restricted and require review and pipeline approval before deployment. 
 
     5. Automated Deployment
         - CI/CD pipelines enforce all deployment rules, approval workflows, and environment restrictions.
