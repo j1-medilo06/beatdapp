@@ -1,1 +1,9 @@
----
+resources:
+  - 00-namespace
+  - 01-crds
+  - 02-rbac
+  - 03-config
+  - 04-storage
+  - 05-services
+  - 06-workloads
+  - 07-autoscaling

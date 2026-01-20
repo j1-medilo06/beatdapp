@@ -1,0 +1,2 @@
+resources:
+  - _deployment_gpu.yaml
