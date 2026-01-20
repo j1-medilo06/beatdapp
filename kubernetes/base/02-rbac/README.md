@@ -28,7 +28,7 @@ This repository contains Role, RoleBinding, and ServiceAccount YAML configuratio
 - Suitable for rapid development and testing in the `dev` namespace.  
 
 ### Staging Role (`_role_stg.yaml`)
-- Read/write access to workloads for validation and testing.  
+- Allow read/write access to workloads for validation and testing, and perform limited manual fixes for issues missed in dev environment, which should later be codified.
 - Read-only access to secrets.  
 - Logs are viewable; `exec` is restricted.  
 - Ensures controlled testing before production deployment.  
