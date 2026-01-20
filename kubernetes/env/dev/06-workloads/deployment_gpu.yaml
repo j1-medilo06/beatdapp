@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml_gpu-service
+  labels:
+    app: ml_gpu-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ml_gpu-service
+  template:
+    metadata:
+      labels:
+        app: ml_gpu-service
+    spec:
+      # Ensures the pod only runs on GPU-enabled nodes
+      nodeSelector:
+        accelerator: nvidia
+
+      containers:
+        - name: ml_gpu-service
+          image: your-registry/ml-gpu-service:1.0.0
+          imagePullPolicy: IfNotPresent
+
+          resources:
+            limits:
+              nvidia.com/gpu: 1     # Request exactly 1 GPU
+              cpu: "2"
+              memory: "8Gi"
+            requests:
+              cpu: "1"
+              memory: "4Gi"
+
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: all

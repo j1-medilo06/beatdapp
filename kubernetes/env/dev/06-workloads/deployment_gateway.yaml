@@ -13,6 +13,9 @@ spec:
     metadata:
       labels:
         app: gateway-service
+    # Ensures the pod only runs on GPU-enabled nodes
+    nodeSelector:
+      accelerator: nvidia
     spec:
       containers:
         - name: gateway-service
