@@ -1,0 +1,62 @@
+name: Deploy to DEV
+
+on:
+  push:
+    branches:
+      - dev
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  ENVIRONMENT: dev
+  AWS_REGION: us-west-2
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate to Vault
+        uses: hashicorp/vault-action@v2
+        with:
+          url: ${{ secrets.VAULT_ADDR }}
+          method: jwt
+          role: gha-deployer
+          secrets: |
+            secret/data/db DB_USERNAME | DB_USERNAME ;
+            secret/data/db DB_PASSWORD | DB_PASSWORD
+
+      - name: Scan repository
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          severity: HIGH,CRITICAL
+          exit-code: 1
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/gha-eks-deployer
+          role-duration-seconds: 3600
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+            --region $AWS_REGION \
+            --name eks-dev
+
+      - name: Apply secrets
+        run: |
+          kubectl create secret generic db-credentials \
+            --from-literal=DB_USERNAME=$DB_USERNAME \
+            --from-literal=DB_PASSWORD=$DB_PASSWORD \
+            --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Deploy to DEV
+        run: kubectl apply -f k8s/

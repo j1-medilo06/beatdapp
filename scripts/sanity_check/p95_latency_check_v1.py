@@ -1,5 +1,6 @@
 ##################################################################################################################
-# How to run:  ./p95_latency_check.py [path]/[filename.ext] (/logs/2024/06/15/10.0.10.10_app_0001.log)           #
+# How to run:  ./p95_latency_check.py [path]/[filename.ext]                                                      #
+#   ie. ./p95_latency_check.py /logs/2024/06/15/10.0.10.10_app_0001.log)                                         #
 ##################################################################################################################
 
 import re # Provides regular expression support for pattern matching and parsing text (used to extract fields from log lines)

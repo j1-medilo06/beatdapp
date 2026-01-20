@@ -1,0 +1,56 @@
+name: Deploy to STAGING
+
+on:
+  workflow_run:
+    workflows: ["Deploy to DEV"]
+    types:
+      - completed
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  ENVIRONMENT: stg
+  AWS_REGION: us-west-2
+
+jobs:
+  deploy-stg:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: stg
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate to Vault
+        uses: hashicorp/vault-action@v2
+        with:
+          url: ${{ secrets.VAULT_ADDR }}
+          method: jwt
+          role: gha-deployer
+          secrets: |
+            secret/data/db DB_USERNAME | DB_USERNAME ;
+            secret/data/db DB_PASSWORD | DB_PASSWORD
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/gha-eks-deployer
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig \
+            --region $AWS_REGION \
+            --name eks-stg
+
+      - name: Apply secrets
+        run: |
+          kubectl create secret generic db-credentials \
+            --from-literal=DB_USERNAME=$DB_USERNAME \
+            --from-literal=DB_PASSWORD=$DB_PASSWORD \
+            --dry-run=client -o yaml | kubectl apply -f -
+
+      - name: Deploy to STG
+        run: kubectl apply -f k8s/

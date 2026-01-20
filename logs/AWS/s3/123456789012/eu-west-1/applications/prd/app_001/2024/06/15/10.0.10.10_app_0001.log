@@ -1,0 +1,30 @@
+2024-06-15T08:00:00 INFO  [Main] Starting Recommendation Engine v2.4.1...
+2024-06-15T08:00:01 INFO  [Main] Loading model 'resnet-50-quantized' from S3...
+2024-06-15T08:00:05 INFO  [Main] Service ready on port 8080.
+2024-06-15T08:01:10 INFO  [RecService] RequestId: req-101 user_id=5501 latency_ms=120 status=200
+2024-06-15T08:01:11 INFO  [RecService] RequestId: req-102 user_id=9902 latency_ms=210 status=200
+2024-06-15T08:01:12 INFO  [RecService] RequestId: req-103 user_id=1203 latency_ms=105 status=200
+2024-06-15T08:01:12 WARN  [RecService] RequestId: req-104 user_id=8821 latency_ms=850 status=200 (Cache Miss)
+2024-06-15T08:01:13 ERROR [RecService] RequestId: req-105 - Connection refused to DB
+java.net.ConnectException: Connection refused
+    at com.beatdapp.db.Connection.connect(Connection.java:140)
+    at com.beatdapp.service.Handler.handle(Handler.java:45)
+2024-06-15T08:01:15 INFO  [RecService] RequestId: req-106 user_id=3301 latency_ms=115 status=200
+2024-06-15T08:01:16 INFO  [RecService] RequestId: req-107 user_id=4402 latency_ms=300 status=200
+2024-06-15T08:01:17 INFO  [RecService] RequestId: req-108 user_id=1010 latency_ms=190 status=200
+2024-06-15T08:01:18 INFO  [RecService] RequestId: req-109 user_id=5050 latency_ms=220 status=200
+2024-06-15T08:01:19 INFO  [RecService] RequestId: req-110 user_id=6060 latency_ms=95 status=200
+2024-06-15T08:01:20 INFO  [RecService] RequestId: req-111 user_id=7070 latency_ms=410 status=200
+2024-06-15T08:01:21 WARN  [HealthCheck] Heartbeat latency_ms=10 status=200
+2024-06-15T08:01:22 INFO  [RecService] RequestId: req-112 user_id=8080 latency_ms=130 status=200
+2024-06-15T08:01:23 INFO  [RecService] RequestId: req-113 user_id=9090 latency_ms=125 status=200
+2024-06-15T08:01:24 ERROR [RecService] RequestId: req-114 - Payload too large
+2024-06-15T08:01:25 INFO  [RecService] RequestId: req-115 user_id=1111 latency_ms=900 status=200
+2024-06-15T08:01:26 INFO  [RecService] RequestId: req-116 user_id=2222 latency_ms=150 status=200
+2024-06-15T08:01:27 INFO  [RecService] RequestId: req-117 user_id=3333 latency_ms=200 status=200
+2024-06-15T08:01:28 INFO  [RecService] RequestId: req-118 user_id=4444 latency_ms=180 status=200
+2024-06-15T08:01:29 INFO  [RecService] RequestId: req-119 user_id=5555 latency_ms=1000 status=200
+2024-06-15T08:01:30 INFO  [RecService] RequestId: req-120 user_id=6666 latency_ms=110 status=200
+2024-06-15T08:01:31 INFO  [RecService] RequestId: req-121 user_id=7777 latency_ms=140 status=200
+2024-06-15T08:01:32 INFO  [RecService] RequestId: req-122 user_id=8888 latency_ms=130 status=200
+2024-06-15T08:01:33 INFO  [RecService] RequestId: req-123 user_id=9999 latency_ms=250 status=200

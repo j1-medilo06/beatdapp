@@ -1,0 +1,1 @@
+https 2026-01-19T23:54:12.345678Z app/my-alb/50dc6c495c0c9188 203.0.113.10:51234 10.0.1.25:443 0.001 0.045 0.000 200 200 512 1024 "GET https://example.com:443/api/v1/health HTTP/1.1" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)" ECDHE-RSA-AES128-GCM-SHA256 TLSv1.2 arn:aws:elasticloadbalancing:us-
