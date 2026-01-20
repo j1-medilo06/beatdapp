@@ -1,0 +1,34 @@
+# =============================
+# STAGING ROLE
+# =============================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: stg-application-role
+  namespace: stg
+rules:
+  # Controlled access to workloads for validation and testing
+  - apiGroups: ["", "apps", "batch"]
+    resources:
+      - pods
+      - services
+      - deployments
+      - replicasets
+      - statefulsets
+      - daemonsets
+      - jobs
+      - cronjobs
+      - configmaps
+    verbs: ["get", "list", "watch", "create", "update", "patch"]
+
+  # Read-only access to secrets
+  - apiGroups: [""]
+    resources:
+      - secrets
+    verbs: ["get", "list"]
+
+  # Logs allowed, exec restricted
+  - apiGroups: [""]
+    resources:
+      - pods/log
+    verbs: ["get", "list"]

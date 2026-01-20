@@ -1,0 +1,24 @@
+# =============================
+# PRODUCTION ROLE
+# =============================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: prd-application-role
+  namespace: prd
+rules:
+  # Read-only access to production workloads
+  - apiGroups: ["", "apps", "batch"]
+    resources:
+      - pods
+      - services
+      - deployments
+      - replicasets
+      - statefulsets
+      - daemonsets
+      - jobs
+      - cronjobs
+      - configmaps
+    verbs: ["get", "list", "watch"]
+
+  # No direct access

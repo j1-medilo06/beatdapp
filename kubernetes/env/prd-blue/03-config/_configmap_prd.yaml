@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: gateway-service-config
 data:
-  APP_ENV: "production"
+  APP_ENV: "prd"
   LOG_LEVEL: "info"
   SERVICE_PORT: "8080"

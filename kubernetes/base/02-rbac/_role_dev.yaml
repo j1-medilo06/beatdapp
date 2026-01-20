@@ -1,0 +1,32 @@
+# =============================
+# DEV ROLE
+# =============================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: dev-application-role
+  namespace: dev
+rules:
+  # Full access to common workload resources for rapid development
+  - apiGroups: ["", "apps", "batch"]
+    resources:
+      - pods
+      - services
+      - deployments
+      - replicasets
+      - statefulsets
+      - daemonsets
+      - jobs
+      - cronjobs
+      - configmaps
+      - secrets
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+
+  # Allow viewing logs and exec for debugging
+  - apiGroups: [""]
+    resources:
+      - pods/log
+      - pods/exec
+    verbs: ["get", "list", "create"]
+
+---
