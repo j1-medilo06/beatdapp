@@ -1,0 +1,1 @@
+2026-01-19T23:54:12.345678Z my-classic-elb 203.0.113.10:51234 10.0.1.25:80 0.001 0.045 0.000 200 200 512 1024 "GET /api/v1/health HTTP/1.1" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"
