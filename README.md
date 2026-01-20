@@ -12,6 +12,7 @@ Beatdapp Take-Home Assignment – Platform Engineering Golden Path
 
 
 
+--- 
 ### Developer Workflow Policy – “Golden Path”
 The purpose of this policy is to define a safe, controlled, and automated workflow for code changes and deployments, minimizing the risk of unintended modifications to production environments while maintaining development efficiency.
 
