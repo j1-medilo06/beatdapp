@@ -1,0 +1,14 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: ml-service-pdb
+  labels:
+    app: ml-service
+spec:
+  # Ensure at least one pod remains available during voluntary disruptions
+  # (e.g., node drains, rolling upgrades)
+  minAvailable: 1
+
+  selector:
+    matchLabels:
+      app: ml-service
